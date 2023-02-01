@@ -1,5 +1,7 @@
 package com.pav.application.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	// service to save user in the db
 
 	@Override
-	public User addUser(UserDto userDto) {
+	public User addUser(UserDto userDto) throws Exception {
 
 		// saving user in the db and returning the user
 
@@ -30,12 +32,12 @@ public class UserServiceImpl implements UserService {
 
 		Cart cart = new Cart();
 		cart.setCartId(0);
-		cart.setCartProducts(null);
+		
 		cart.setUser(user);
 
 		user.setCart(cart);
-
 		return userRepository.save(user);
+
 	}
 
 }

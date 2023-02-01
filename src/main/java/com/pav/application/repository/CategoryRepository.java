@@ -1,9 +1,11 @@
 package com.pav.application.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.pav.application.entity.Category;
 
-public interface CategoryReposiroty extends JpaRepository<Category, Integer> {
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
 }

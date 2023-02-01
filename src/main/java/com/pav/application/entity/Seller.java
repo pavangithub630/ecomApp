@@ -3,7 +3,11 @@ package com.pav.application.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +31,8 @@ public class Seller {
 	private int age;
 	private LocalDate dateOfBirth;
 	
-	@OneToMany(mappedBy = "seller")
+	@OneToMany(mappedBy = "seller",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JsonManagedReference(value = "products-seller")
 	private List<Product> sellerProducts;
 	
 }

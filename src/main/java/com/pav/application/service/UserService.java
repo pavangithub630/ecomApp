@@ -6,6 +6,6 @@ import com.pav.application.entity.User;
 public interface UserService {
 	
 	
-	public abstract User addUser(UserDto user);
+	public abstract User addUser(UserDto user) throws Exception;
 
 }

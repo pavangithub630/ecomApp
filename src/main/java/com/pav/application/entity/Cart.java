@@ -8,7 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,8 +29,10 @@ public class Cart {
 	@OneToOne(mappedBy = "cart")
 	@JsonBackReference(value = "user-cart")
 	private User user;
+	
+	@ManyToMany
+    @JoinTable(name = "cart_products", joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "cartId"), inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "productId"))
+    private List<Product> products;
 
-	@OneToMany(mappedBy = "cart")
 
-	private List<Product> cartProducts;
 }

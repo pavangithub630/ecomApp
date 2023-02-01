@@ -1,4 +1,7 @@
 package com.pav.application.controller;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -6,25 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pav.application.dto.UserDto;
+import com.pav.application.entity.Category;
 import com.pav.application.entity.User;
-import com.pav.application.service.UserService;
+import com.pav.application.service.CategoryService;
 
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping(value = "category")
+public class CategoryController {
 	
-	//adding the user service dependency
 	@Autowired
-	UserService userService;
+	CategoryService categoryService;
 	
-	// controller method to send the user reponse body to the service
-	@PostMapping(value = "add-user")
-	public User addUser(@RequestBody UserDto user) throws Exception {
+	
+	@PostMapping(value = "add-categories")
+	public List<Category> addCategory(@RequestBody List<Category> categories){
 		
-		//passing the request from the client (user object) to the add user method
+		//passing the list of categories to save in the database
 		
-		return userService.addUser(user);
+		return categoryService.addCategoty(categories);
 	}
-	
 
 }

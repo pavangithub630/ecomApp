@@ -23,6 +23,8 @@ public class SellerServiceImpl implements SellerService{
 		
 	
 		
+		
+		
 			//mapping the sellerDto to seller class
 			Seller seller = modelMapper.map(sellerDto,Seller.class);
 			seller.setSellerProducts(null);
