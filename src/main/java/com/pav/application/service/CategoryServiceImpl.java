@@ -22,4 +22,10 @@ public class CategoryServiceImpl implements CategoryService {
 		
 	}
 
+	@Override
+	public Category setImagesToCategory(int categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

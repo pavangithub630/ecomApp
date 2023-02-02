@@ -1,6 +1,8 @@
 package com.pav.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +24,11 @@ public class SellerController {
 
 	// controller method for creating seller 
 	@PostMapping("add-seller")
-	public Seller createSeller(@RequestBody SellerDto sellerDto) {
+	public ResponseEntity<Seller> createSeller(@RequestBody SellerDto sellerDto) {
 		
-		 return sellerService.addSeller(sellerDto);
+		Seller seller=  sellerService.addSeller(sellerDto);
+		  
+		  return new ResponseEntity<Seller>(seller,HttpStatus.OK);
 		
 	}
 }

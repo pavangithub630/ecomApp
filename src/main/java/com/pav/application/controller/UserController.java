@@ -1,5 +1,7 @@
 package com.pav.application.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +21,12 @@ public class UserController {
 	
 	// controller method to send the user reponse body to the service
 	@PostMapping(value = "add-user")
-	public User addUser(@RequestBody UserDto user) throws Exception {
+	public ResponseEntity<User> addUser(@RequestBody UserDto userDto) throws Exception {
 		
 		//passing the request from the client (user object) to the add user method
 		
-		return userService.addUser(user);
+		User user= userService.addUser(userDto);
+		 return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
 

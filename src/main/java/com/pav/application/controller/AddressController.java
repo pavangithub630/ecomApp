@@ -1,6 +1,8 @@
 package com.pav.application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,9 @@ public class AddressController {
 	@Autowired
 	AddressService addressService;
 	@PostMapping
-	public Address addAddressToTheUser(@RequestBody AddressDto addressDto) {
-		return addressService.addAddressToTheUser(addressDto);
+	public ResponseEntity<Address> addAddressToTheUser(@RequestBody AddressDto addressDto) {
+		Address  address= addressService.addAddressToTheUser(addressDto);
+		return new ResponseEntity<>(address,HttpStatus.OK);
 	}
 
 }
