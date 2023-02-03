@@ -7,5 +7,8 @@ import com.pav.application.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+	
+	User findByUserName(String username);
+	User findByFirstName(String username);
 
 }
